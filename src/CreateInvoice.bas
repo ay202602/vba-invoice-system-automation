@@ -31,7 +31,10 @@ Sub CreateInvoice()
     Dim Search As Range
     Set Search = inv.CellSearch(CustomerKey)
     
-    If Search Is Nothing Then
+    If CustomerKey = "" Then
+        MsgBox "B2セルに顧客名を入力してください。", vbCritical
+        Exit Sub
+    ElseIf Search Is Nothing Then
         MsgBox CustomerKey & "は売上リストの顧客名には存在しません。", vbCritical
         Exit Sub
     Else
