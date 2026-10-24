@@ -55,5 +55,3 @@ vba-invoice-system-automation
     ├── CInvoice.cls         # クラスモジュール
     └── CreateInvoice.bas    # 標準モジュール
 ```
-## invoice.xlsmについて
-- 全て架空のデータであり、実際の企業・団体とは無関係です。
