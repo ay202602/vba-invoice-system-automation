@@ -1,4 +1,5 @@
-# invoice_system
+# vba-invoice-system-automation
+
 ## 概要
 - 請求書を自動作成するマクロです
 ## 実行結果
