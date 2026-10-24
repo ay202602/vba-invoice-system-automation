@@ -31,13 +31,26 @@
 1. ワークシート「請求書」B2セルの顧客名をプルダウンで選択（売上データ連動）
 2. 「請求書作成」と書かれた図形（ボタン）をクリック
 3. 該当する顧客名のデータが下の表（A5:G17）に転記されます
+
+## 動作環境・使用技術
+> **動作環境**： Microsoft Excel Home and Business 2024 （マクロの有効化が必要）
+
+| 技術 | 内容 | 目的 | 該当箇所 |
+|:---|:---|:---|:---|
+| クラスモジュール | 検索 / コピー / 貼り付け / フィルタ をクラスに集約 | 保守性の向上 | `CInvoice.cls` |
+| init メソッド | VBAのクラスは `Class_Initialize` に引数を取れないため、`Sub init` で対象セルを受け取る | 初期化処理の分離 | `CInvoice.init` |
+| Private 変数(カプセル化) | `mCustomer` `mCellStart` `mPasteCells` を外部から直接触らせない | 意図しない書き換え防止 | `CInvoice.cls` 冒頭 |
+| インスタンス変数を参照する Function | `CellSearch` が保持セルを基準に検索し `Range` を返す | 呼び出し側の引数削減 | `CInvoice.CellSearch` |
+| 標準モジュールの薄型化 | 入力チェックと呼び出し順の制御のみ担当 | コード量・重複の削減 | `CreateInvoice.bas` |
+
 ## ディレクトリ構成
+
 ```
-invoice_system
+vba-invoice-system-automation
 ├── image
 │   └── result.png           # 実行結果画像
 ├── sample
-│   └── invoice.xlsm         # Excelファイル（データ）
+│   └── invoice.xlsm         # Excelファイル（架空データ）
 └── src
     ├── CInvoice.cls         # クラスモジュール
     └── CreateInvoice.bas    # 標準モジュール
